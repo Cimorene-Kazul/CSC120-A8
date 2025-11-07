@@ -42,8 +42,20 @@ public class CampusMap {
 
     public static void main(String[] args) {
         CampusMap myMap = new CampusMap();
+        // given defaults
         myMap.addBuilding(new Building("Ford Hall", "100 Green Street Northampton, MA 01063", 4));
         myMap.addBuilding(new Building("Bass Hall", "4 Tyler Court Northampton, MA 01063", 4));
+        // additional 10 Buildings (I might get info wrong - I have not been in all of them)
+        myMap.addBuilding(new Cafe("Julia Child Campus Center", "<address>", 3, 2000, 200, 200, 300));
+        myMap.addBuilding(new Cafe("Library Anex", "<address>", 3, 1500, 100, 100, 200));
+        myMap.addBuilding(new Library("Library", "<address>", 3, true));
+        myMap.addBuilding(new Library("Sage Music Library", "<address>"));
+        myMap.addBuilding(new House("Tyler", "<address>", 3, true));
+        myMap.addBuilding(new House("Capen", "<address>", 2));
+        myMap.addBuilding(new Building("Capen Anex", "<address>", 2));
+        myMap.addBuilding(new Building("Seelye Hall", "<address>", 4));
+        myMap.addBuilding(new Building("Burton Hall", "<address>", 4));
+        myMap.addBuilding(new Building("Sabin-Reed Hall", "<address>", 5));
         System.out.println(myMap);
     }
     
