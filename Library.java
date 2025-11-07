@@ -43,8 +43,12 @@ public class Library extends Building implements LibraryRequirements{
       super(name, address, nFloors);
       // make an empty Hashtable to store the collection in
       this.collection = new Hashtable<String, Boolean>();
-      // store whether the Library has an Elevator
-      this.hasElevator = hasElevator;
+      // store whether the Library has an Elevator. This must be false if there is 1 floor
+      if (this.nFloors == 1){
+        this.hasElevator = false;
+      } else{
+        this.hasElevator = hasElevator;
+      }
       // notify the user of success
       System.out.println("You have built a library: 📖");
     }

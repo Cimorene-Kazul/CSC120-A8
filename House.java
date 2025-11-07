@@ -50,9 +50,14 @@ public class House extends Building implements HouseRequirements{
     super(name, address, nFloors);
     // make an empty array to store the students that live in the house
     this.residents = new ArrayList<Student>();
-    // store whether the house has a dining room and elevator
-    this.hasDiningRoom = hasDiningRoom;
-    this.hasElevator = hasElevator;
+    // store whether the house has a dining room
+    this.hasDiningRoom = hasDiningRoom;     
+     // store whether the house has an Elevator. This must be false if there is 1 floor
+      if (this.nFloors == 1){
+        this.hasElevator = false;
+      } else{
+        this.hasElevator = hasElevator;
+      }
     // notify the user of success
     System.out.println("You have built a house: 🏠");
   }
