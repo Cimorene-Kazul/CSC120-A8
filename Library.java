@@ -69,14 +69,14 @@ public class Library extends Building implements LibraryRequirements{
         this.collection.put(title, true); // add the book to the collection as availiable if the book is not already in the collection.
         System.out.println(title+" has been added to the collection."); // tell the user
       } else {
-        System.out.println("The book "+title+" is already in the collection and thus cannot be added."); // otherwise, print a (non-Exception) error
+        throw new RuntimeException("The book "+title+" is already in the collection and thus cannot be added."); // otherwise, throw an error
       }
     }
 
     /**
      * Removes a book from the collection and returns it, or prints an error if the book is not actually in the collection.
      * @param title is a String title (with author) of the book to remove.
-     * @return the book title that is removed, or null if no book is removed
+     * @return the book title that is removed
      */
     public String removeTitle(String title){
       if (this.containsTitle(title)){
@@ -84,8 +84,7 @@ public class Library extends Building implements LibraryRequirements{
         System.out.println(title+" has been removed from the collection."); // tell the user
         return title; // and return the title
       } else {
-        System.out.println("The book "+title+" is not in the collection and thus cannot be removed."); // otherwise, print a (non-Exception) error
-        return null; // and return null so java does not freak out
+        throw new RuntimeException("The book "+title+" is not in the collection and thus cannot be removed."); // otherwise, throw an error
       }
     }
 
@@ -98,7 +97,7 @@ public class Library extends Building implements LibraryRequirements{
         this.collection.put(title, false); // if the book is availiable, mark it as unavailiable.
         System.out.println(title+" has been checked out of the collection."); // tell the user
       } else {
-        System.out.println("The book "+title+" is unavailiable and thus cannot be checked out."); // otherwise, print a (non-Exception) error
+        throw new RuntimeException("The book "+title+" is unavailiable and thus cannot be checked out."); // otherwise, throw an error
       }
     }
 
@@ -111,7 +110,7 @@ public class Library extends Building implements LibraryRequirements{
         this.collection.put(title, true); // if the book is not currently availiable, and is in the collection, mark it as availiable
         System.out.println(title+" has been returned to the collection."); // tell the user
       } else {
-        System.out.println("The book title "+title+" is still in the collection and thus cannot be returned.");// otherwise, print a (non-Exception) error
+        throw new RuntimeException("The book title "+title+" is still in the collection and thus cannot be returned.");// otherwise, throw an error
       }
     }
 

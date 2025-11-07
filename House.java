@@ -44,12 +44,12 @@ public class House extends Building implements HouseRequirements{
   }
 
   /**
-   * Adds a student to the house, and prints an error message if they already live there.
+   * Adds a student to the house, and throws a RuntimeException message if they already live there.
    * @param s is the Student object representing the student to add.
    */
   public void moveIn(Student s){
-    if (this.isResident(s)){ // print an error if s already lives in the house
-      System.out.println(s+" already lives in "+this.name+" and so cannot move into "+this.name+".");
+    if (this.isResident(s)){ // throw an error if s already lives in the house
+      throw new RuntimeException(s+" already lives in "+this.name+" and so cannot move into "+this.name+".");
     } else{ // otherwise add s to the house residents
      this.residents.add(s);
      System.out.println(s+" has moved in to "+this.name+".");
@@ -57,15 +57,13 @@ public class House extends Building implements HouseRequirements{
   }
 
   /**
-   * Removes a student from the house, and prints an error message if they do not live there.
+   * Removes a student from the house, and throws a RuntimeException message if they do not live there.
    * @param s is the Student object representing the student that needs to move out.
-   * @return the Student s if s moved out and null if s failed to move out due to not living in the house.
+   * @return the Student s if s moved out
    */
   public Student moveOut(Student s){
-    if (!this.isResident(s)){ // print an error if s does not live in the house
-      System.out.println(s+" does not live in "+this.name+" thus cannot move out of "+this.name+".");
-      // and return null
-      return null;
+    if (!this.isResident(s)){ // throw an error if s does not live in the house
+      throw new RuntimeException(s+" does not live in "+this.name+" thus cannot move out of "+this.name+".");
     } else{ 
       // otherwise remove s from the house residents
      this.residents.remove(s);
