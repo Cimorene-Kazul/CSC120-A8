@@ -13,6 +13,22 @@ public class Cafe extends Building implements CafeRequirements{
     private int maxCreams; // The number of "splashes" of cream the cafe storage can hold.
     private int maxCups; // The number of cups the cafe storage can hold.
 
+    /* Default constructor */
+    public Cafe(int maxCoffeeOunces, int maxSugarPackets, int maxCreams, int maxCups) {
+        this("<Name Unknown>", "<Address Unknown>", 1, maxCoffeeOunces, maxSugarPackets, maxCreams, maxCups);
+    }
+
+    /* Overloaded constructor with address only */
+    public Cafe(String address, int maxCoffeeOunces, int maxSugarPackets, int maxCreams, int maxCups) {
+        this(maxCoffeeOunces, maxSugarPackets, maxCreams, maxCups); // Call default constructor
+        this.address = address; // Override address
+    }
+
+    /* Overloaded constructor with name, address */
+    public Cafe(String name, String address, int maxCoffeeOunces, int maxSugarPackets, int maxCreams, int maxCups) {
+        this(name, address, 1, maxCoffeeOunces, maxSugarPackets, maxCreams, maxCups); // Call full constructor with hard-coded # floors and no elevator or dining room
+    }
+
     /**
      * Constructor for a cafe with all attributes given.
      * @param name is a String that indicates the name of the cafe.
