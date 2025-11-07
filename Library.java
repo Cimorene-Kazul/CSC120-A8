@@ -7,20 +7,54 @@ import java.util.Hashtable;
 public class Library extends Building implements LibraryRequirements{
     // additional attributes
     private Hashtable<String, Boolean> collection;
+    private boolean hasElevator;
+
+    /* Default constructor */
+    public Library() {
+        this("<Name Unknown>", "<Address Unknown>", 1,false);
+    }
+
+    /* Overloaded constructor with address only */
+    public Library(String address) {
+        this(); // Call default constructor
+        this.address = address; // Override address
+    }
+
+    /* Overloaded constructor with name, address */
+    public Library(String name, String address) {
+        this(name, address, 1, false); // Call full constructor with hard-coded # floors and no elevator as default
+    }
+
+
+    /* Overloaded constructor with no elevator indicated*/
+    public Library(String name, String address, int nFloors) {
+        this(name, address, nFloors, false); // Call full constructor with hard-coded no elevator
+    }
 
     /**
      * Constructor for the Library class.
      * @param name a String containing the name of the building.
      * @param address a Strign containing the street address of the building,
      * @param nFloors the integer number of floors that the building has.
+     * @param hasElevator is a boolean that indicates whether the library has an elevator.
      */
-    public Library(String name, String address, int nFloors) {
+    public Library(String name, String address, int nFloors, boolean hasElevator) {
       // use the superclass constructor to start
       super(name, address, nFloors);
       // make an empty Hashtable to store the collection in
       this.collection = new Hashtable<String, Boolean>();
+      // store whether the Library has an Elevator
+      this.hasElevator = hasElevator;
       // notify the user of success
       System.out.println("You have built a library: 📖");
+    }
+
+    /**
+    * Accessor for hasElevator
+    * @return true if the library has an elevator and false if it does not.
+    */
+    public boolean hasElevator(){
+        return this.hasElevator;
     }
 
     /**
@@ -121,6 +155,55 @@ public class Library extends Building implements LibraryRequirements{
         super.showOptions();
         System.out.println(" + printCollection() \n + addTitle(title) \n + removeTitle(title) \n + checkOut(title) \n + returnBook(title)");
     }
+
+    // overwriting goUp and goDown as I think the comment on goToFloor indicates
+
+    /**
+     * goUp for just one floor, not using the elevator
+     */
+    public void goUp(){
+        super.goUp();
+    }
+
+    /**
+     * goUp for a given number of floors, using the elevator if there is one, and throwing an error if trying to go up multiple floors and there is no elevator.
+     * @param nFloors int number of floors to go up by
+     */
+    public void goUp(int nFloors){
+        if (nFloors < 1){
+            throw new RuntimeException("You can only go up a positive number of floors and "+nFloors+" is not positive.");
+        }if (this.hasElevator){
+            this.goToFloor(this.activeFloor + nFloors);
+        }if (nFloors == 1){
+            this.goUp();
+        }else{
+            throw new RuntimeException("There is no elevator in "+this.name+" to permit you to go up multiple floors at once.");
+        }
+    }
+
+    /**
+     * goDown for just one floor, not using the elevator
+     */
+    public void goDown(){
+        super.goDown();
+    }
+
+    /**
+     * goDown for a given number of floors, using the elevator if there is one, and throwing an error if trying to go down multiple floors and there is no elevator.
+     * @param nFloors int number of floors to go down by
+     */
+    public void goDown(int nFloors){
+        if (nFloors < 1){
+            throw new RuntimeException("You can only go down a positive number of floors and "+nFloors+" is not positive.");
+        }if (this.hasElevator){
+            this.goToFloor(this.activeFloor - nFloors);
+        }if (nFloors == 1){
+            this.goDown();
+        }else{
+            throw new RuntimeException("There is no elevator in "+this.name+" to permit you to go up multiple floors at once.");
+        }
+    }
+
 
     // main method to test the class in
     public static void main(String[] args) {
