@@ -114,19 +114,16 @@ public class Library extends Building implements LibraryRequirements{
       }
     }
 
+    /**
+     * Overwrite the parent class's showOptions method to show the Library-specifc methods as well
+     */
+    public void showOptions(){
+        super.showOptions();
+        System.out.println(" + printCollection() \n + addTitle(title) \n + removeTitle(title) \n + checkOut(title) \n + returnBook(title)");
+    }
+
     // main method to test the class in
     public static void main(String[] args) {
-      System.out.println("test");
-      Library frostLibrary = new Library("Robert Frost Library", "12 Mammoth Street", 6); // test Library!
-      // some attempts to use methods - which work!
-      frostLibrary.addTitle("The Lorax by Dr. Seuss");
-      frostLibrary.printCollection();
-      frostLibrary.checkOut("The Lorax by Dr. Seuss");
-      frostLibrary.printCollection();
-      frostLibrary.returnBook("The Lorax by Dr. Seuss");
-      frostLibrary.printCollection();
-      frostLibrary.removeTitle("The Lorax by Dr. Seuss");
-      frostLibrary.printCollection();
     }
   
   }

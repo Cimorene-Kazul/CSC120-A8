@@ -82,9 +82,16 @@ public class House extends Building implements HouseRequirements{
     return residents.contains(s);
   }
 
+  /**
+   * Overwrite the parent class's showOptions method to show the House-specifc methods as well
+   */
+  public void showOptions(){
+    super.showOptions();
+    System.out.println(" + moveIn() \n + moveOut()");
+  }
+
   // main method to test the class
   public static void main(String[] args) {
-    new House("Tyler", "102 Tyler Avenue", 5, true); // test House!
   }
 
 }

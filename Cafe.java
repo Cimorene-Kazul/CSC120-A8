@@ -78,10 +78,17 @@ public class Cafe extends Building implements CafeRequirements{
         // notify the user
         System.out.println("The Cafe has been restocked!");
     }
-    
+
+    /**
+     * Overwrite the parent class's showOptions method to show the Cafe-specifc methods as well
+     */
+    public void showOptions(){
+        super.showOptions();
+        System.out.println(" + sellCoffee(size, sugars, creams)");
+    }
+
     // main method to test the class in 
     public static void main(String[] args) {
-        new Cafe("CC", "101 Smith Street", 3, 200, 10, 10, 10); // test Cafe!
     }
     
 }
