@@ -86,6 +86,10 @@ public class House extends Building implements HouseRequirements{
     return this.residents.size(); // uses arraylist builtins to fetch the number of residents
   }
 
+  /**
+  * Overwrites parent class method by allowing movement between arbitrary floors only if an elevator is present. Otherwise, you can only move up and down 1 floor at a time.
+  * @param floorNum is the integer number indicating the destiantion floor.
+  */
   public void goToFloor(int floorNum){
         if (this.hasElevator){
             super.goToFloor(floorNum);
@@ -109,6 +113,10 @@ public class House extends Building implements HouseRequirements{
     }
   }
 
+  /**
+   * Adds all students in a list of students to the house, and throws a RuntimeException message if any already live there.
+   * @param students is the ArrayList of Student objects to add.
+   */
   public void moveIn(ArrayList<Student> students){
     for (Student student: students){
         moveIn(student);
@@ -133,6 +141,11 @@ public class House extends Building implements HouseRequirements{
     }
   }
 
+  /**
+   * Removes a list of students from the house, and throws a RuntimeException message if any do not live there.
+   * @param students is the ArrayList of Student objects to remove.
+   * @return an ArrayList containing the removed students
+   */
   public ArrayList<Student> moveOut(ArrayList<Student> students){
     for (Student student:students){
         moveOut(student);

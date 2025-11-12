@@ -59,10 +59,14 @@ public class Cafe extends Building implements CafeRequirements{
         System.out.println("You have built a cafe: ☕");
     }
 
+    /**
+     * Overwrites parent class method by only allowing movement between neighbooring floors due to lack of elevator
+     * @param floorNum is the integer number indicating the destiantion floor.
+     */
     public void goToFloor(int floorNum){
-        if (-1<=this.activeFloor-floorNum && this.activeFloor-floorNum<= 1){
-            super.goToFloor(floorNum);
-        } else{
+        if (-1<=this.activeFloor-floorNum && this.activeFloor-floorNum<= 1){ // if floors are neighbooring
+            super.goToFloor(floorNum); // go to target floor
+        } else{ // otherwise, throw an error.
             throw new RuntimeException("Without an elevator, you can only go to floors that differ from the current floor by at most 1.");
         }
     }

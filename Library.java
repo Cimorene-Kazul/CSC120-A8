@@ -62,6 +62,10 @@ public class Library extends Building implements LibraryRequirements{
         return this.hasElevator;
     }
 
+    /**
+     * Overwrites parent class method by allowing movement between arbitrary floors only if an elevator is present. Otherwise, you can only move up and down 1 floor at a time.
+     * @param floorNum is the integer number indicating the destiantion floor.
+     */
     public void goToFloor(int floorNum){
         if (this.hasElevator){
             super.goToFloor(floorNum);
@@ -122,6 +126,10 @@ public class Library extends Building implements LibraryRequirements{
       }
     }
 
+    /**
+     * Adds all books in a given list to the collection, and sets it to availiable, or prints an error if the book is already in the collection.
+     * @param title is an ArrayList of String titles (with author) of the books to add.
+     */
     public void addTitle(ArrayList<String> titles){
         for (String title:titles){
             addTitle(title);
@@ -143,6 +151,11 @@ public class Library extends Building implements LibraryRequirements{
       }
     }
 
+    /**
+     * Removes all books in a list of titles from the collection and returns it, or prints an error if any of the books is not actually in the collection.
+     * @param title is an ArrayList of String titles (with author) of the books to remove.
+     * @return the book titles that are removed
+     */
     public ArrayList<String> removeTitle(ArrayList<String> titles){
         for (String title:titles){
             removeTitle(title);
@@ -163,6 +176,10 @@ public class Library extends Building implements LibraryRequirements{
       }
     }
 
+    /**
+     * Marks all books in a list of books the collection as unavailiable.
+     * @param titles is an ArrayList of String titles (with author) of the books to check out.
+     */
     public void checkOut(ArrayList<String> titles){
         for (String title:titles){
             checkOut(title);
@@ -182,6 +199,10 @@ public class Library extends Building implements LibraryRequirements{
       }
     }
 
+    /**
+     * Marks all books in a list of titles in the collection as availiable.
+     * @param titles is an ArrayList of String titles (with author) of the books to return.
+     */
     public void returnBook(ArrayList<String> titles){
         for (String title:titles){
             returnBook(title);
