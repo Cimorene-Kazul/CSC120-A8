@@ -86,6 +86,16 @@ public class House extends Building implements HouseRequirements{
     return this.residents.size(); // uses arraylist builtins to fetch the number of residents
   }
 
+  public void goToFloor(int floorNum){
+        if (this.hasElevator){
+            super.goToFloor(floorNum);
+        } if (-1<=this.activeFloor-floorNum && this.activeFloor-floorNum<= 1){
+            super.goToFloor(floorNum);
+        } else{
+            throw new RuntimeException("Without an elevator, you can only go to floors that differ from the current floor by at most 1.");
+        }
+    }
+
   /**
    * Adds a student to the house, and throws a RuntimeException message if they already live there.
    * @param s is the Student object representing the student to add.
@@ -96,6 +106,12 @@ public class House extends Building implements HouseRequirements{
     } else{ // otherwise add s to the house residents
      this.residents.add(s);
      System.out.println(s+" has moved in to "+this.name+".");
+    }
+  }
+
+  public void moveIn(ArrayList<Student> students){
+    for (Student student: students){
+        moveIn(student);
     }
   }
 
@@ -115,6 +131,13 @@ public class House extends Building implements HouseRequirements{
      // and return s
      return s;
     }
+  }
+
+  public ArrayList<Student> moveOut(ArrayList<Student> students){
+    for (Student student:students){
+        moveOut(student);
+    }
+    return students;
   }
 
   /**

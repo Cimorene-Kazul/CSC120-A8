@@ -59,6 +59,14 @@ public class Cafe extends Building implements CafeRequirements{
         System.out.println("You have built a cafe: ☕");
     }
 
+    public void goToFloor(int floorNum){
+        if (-1<=this.activeFloor-floorNum && this.activeFloor-floorNum<= 1){
+            super.goToFloor(floorNum);
+        } else{
+            throw new RuntimeException("Without an elevator, you can only go to floors that differ from the current floor by at most 1.");
+        }
+    }
+
     /**
      * Sells a drink with given requirements from the Cafe, restocking if need be.
      * @param size is the integer number of ounces of coffee in the drink.

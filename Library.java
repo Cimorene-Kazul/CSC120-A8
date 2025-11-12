@@ -1,4 +1,5 @@
 import java.util.Hashtable;
+import java.util.ArrayList;
 
 /**
  * This is the Library class. Library is a subclass of Building and impliments LibraryRequirements.
@@ -61,6 +62,16 @@ public class Library extends Building implements LibraryRequirements{
         return this.hasElevator;
     }
 
+    public void goToFloor(int floorNum){
+        if (this.hasElevator){
+            super.goToFloor(floorNum);
+        } if (-1<=this.activeFloor-floorNum && this.activeFloor-floorNum<= 1){
+            super.goToFloor(floorNum);
+        } else{
+            throw new RuntimeException("Without an elevator, you can only go to floors that differ from the current floor by at most 1.");
+        }
+    }
+
     /**
      * Checks if a title is in the collection
      * @param title is a String indicating the title (with author)
@@ -111,6 +122,12 @@ public class Library extends Building implements LibraryRequirements{
       }
     }
 
+    public void addTitle(ArrayList<String> titles){
+        for (String title:titles){
+            addTitle(title);
+        }
+    }
+
     /**
      * Removes a book from the collection and returns it, or prints an error if the book is not actually in the collection.
      * @param title is a String title (with author) of the book to remove.
@@ -126,6 +143,13 @@ public class Library extends Building implements LibraryRequirements{
       }
     }
 
+    public ArrayList<String> removeTitle(ArrayList<String> titles){
+        for (String title:titles){
+            removeTitle(title);
+        }
+        return titles;
+    }
+
     /**
      * Marks a book in the collection as unavailiable.
      * @param title is a String title (with author) of thhe book to check out.
@@ -139,6 +163,12 @@ public class Library extends Building implements LibraryRequirements{
       }
     }
 
+    public void checkOut(ArrayList<String> titles){
+        for (String title:titles){
+            checkOut(title);
+        }
+    }
+
     /**
      * Marks a book in the collection as availiable.
      * @param title is a String title (with author) of thhe book to return.
@@ -150,6 +180,12 @@ public class Library extends Building implements LibraryRequirements{
       } else {
         throw new RuntimeException("The book title "+title+" is still in the collection and thus cannot be returned.");// otherwise, throw an error
       }
+    }
+
+    public void returnBook(ArrayList<String> titles){
+        for (String title:titles){
+            returnBook(title);
+        }
     }
 
     /**
